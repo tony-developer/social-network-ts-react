@@ -4,10 +4,6 @@ import MyPosts from "./MyPosts/MyPosts";
 import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Post, {PostPropsType} from "./MyPosts/Post/Post";
 
-// let posts= [
-//     {id: 1, message: 'Hi! How are you?', likesCount: 12},
-//     {id: 2, message:'Is \'s my first post!', likesCount: 11},
-// ]
 type PostsPropsType = {
     posts: Array<PostPropsType>
 }
