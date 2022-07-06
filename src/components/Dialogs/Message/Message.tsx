@@ -1,6 +1,7 @@
 import s from './../Dialogs.module.css'
 
 export type MessagePropsType = {
+    id: number
     message: string
 }
 const Message = (props: MessagePropsType) => {

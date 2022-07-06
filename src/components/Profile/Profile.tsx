@@ -9,7 +9,7 @@ type PostsPropsType = {
 }
 
 const Profile = (props:PostsPropsType) => {
-    let postsElements = props.posts.map(p => <Post message={p.message} likesCount={p.likesCount}/>)
+    let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount}/>)
 
     return (
         <div>

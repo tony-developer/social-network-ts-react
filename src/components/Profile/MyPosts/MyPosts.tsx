@@ -1,14 +1,11 @@
  import React from 'react';
 import s from './MyPosts.module.css'
-import Post from "./Post/Post";
+import Post, {PostPropsType} from "./Post/Post";
 import postsElements from "../Profile";
 
-type PostsType ={
-    id: number,
-    message: string,
-    likesCount: number
-}
-const MyPosts = (props:PostsType) => {
+
+
+const MyPosts = (props:PostPropsType) => {
 
     // let posts= [
     //     {id: 1, message: 'Hi! How are you?', likesCount: 12},
