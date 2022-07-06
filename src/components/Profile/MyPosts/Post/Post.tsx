@@ -1,7 +1,7 @@
 import React from 'react';
 import s from './Post.module.css'
 
-type PostPropsType={
+export type PostPropsType={
     message: string,
     likesCount: number
 }
@@ -9,7 +9,6 @@ type PostPropsType={
 const Post = (props:PostPropsType) => {
 
     return (
-
         <div className={s.item}>
             <img
                 src='https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcSbvYBi8HjWwL2ILkUP3iSr26KrR6CJWnqK6w&usqp=CAU'/>
