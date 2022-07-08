@@ -1,0 +1,13 @@
+{
+  "files": {
+    "main.css": "/social-network-ts-react/static/css/main.2b095563.css",
+    "main.js": "/social-network-ts-react/static/js/main.fedf53f5.js",
+    "index.html": "/social-network-ts-react/index.html",
+    "main.2b095563.css.map": "/social-network-ts-react/static/css/main.2b095563.css.map",
+    "main.fedf53f5.js.map": "/social-network-ts-react/static/js/main.fedf53f5.js.map"
+  },
+  "entrypoints": [
+    "static/css/main.2b095563.css",
+    "static/js/main.fedf53f5.js"
+  ]
+}
