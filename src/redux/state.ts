@@ -1,3 +1,8 @@
+import {rerenderEntireTree} from "../render";
+import {text} from "stream/consumers";
+
+
+
 export type PostType = {
     id:  number
     message: string
@@ -6,6 +11,7 @@ export type PostType = {
 
 export type ProfilePageType = {
     posts: Array<PostType>
+    newPostText:string
 }
 
 export type MessageType = {
@@ -44,7 +50,8 @@ export let state: RootStateType = {
         posts : [
             {id: 1, message: 'Hi! How are you?', likesCount: 12},
             {id: 2, message:'Is \'s my first post!', likesCount: 11},
-        ]
+        ],
+        newPostText:'IT-React'
     },
     dialogsPage: {
         dialogs : [
@@ -75,11 +82,18 @@ export let state: RootStateType = {
     }
 }
 
-export let addPost = (postMessage: string) =>{
+export let addPost = () =>{
     const newPost: PostType = {
         id: new Date().getTime() ,
-        message: postMessage,
+        message: state.profilePage.newPostText,
         likesCount: 0
     };
     state.profilePage.posts.push(newPost)
+    state.profilePage.newPostText=''
+    rerenderEntireTree(state)
+}
+
+export let updateNewPostText = (newText:string) => {
+    state.profilePage.newPostText  = newText
+    rerenderEntireTree(state)
 }
