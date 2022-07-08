@@ -19,7 +19,7 @@ const MyPosts = (props: MyPostsPropsType) => {
         text && props.addPost(text)
         // props.updateNewPostText('')
     }
-    let postsElements = props.posts.map(p => <Post id={p.id} message={p.message} likesCount={p.likesCount} addPost={addPost}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount} addPost={addPost}/>)
     let onPostChange = () => {
         let text = newPostElement.current?.value
         text && props.updateNewPostText(text)

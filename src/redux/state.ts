@@ -1,6 +1,6 @@
-import {rerenderEntireTree} from "../render";
-import {text} from "stream/consumers";
-
+let rerenderEntireTree=(state:RootStateType)=> {
+    console.log('State changed')
+}
 
 
 export type PostType = {
@@ -51,7 +51,7 @@ export let state: RootStateType = {
             {id: 1, message: 'Hi! How are you?', likesCount: 12},
             {id: 2, message:'Is \'s my first post!', likesCount: 11},
         ],
-        newPostText:'IT-React'
+        newPostText:" "
     },
     dialogsPage: {
         dialogs : [
@@ -82,7 +82,7 @@ export let state: RootStateType = {
     }
 }
 
-export let addPost = () =>{
+export const addPost = () =>{
     const newPost: PostType = {
         id: new Date().getTime() ,
         message: state.profilePage.newPostText,
@@ -90,10 +90,13 @@ export let addPost = () =>{
     };
     state.profilePage.posts.push(newPost)
     state.profilePage.newPostText=''
-    rerenderEntireTree(state)
+    rerenderEntireTree( state)
 }
 
-export let updateNewPostText = (newText:string) => {
+export const updateNewPostText = (newText:string) => {
     state.profilePage.newPostText  = newText
     rerenderEntireTree(state)
+}
+export const subscribe = (observer:any) => {
+rerenderEntireTree = observer;//
 }
