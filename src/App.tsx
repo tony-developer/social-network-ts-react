@@ -14,6 +14,7 @@ import Friends from "./components/Friends/Friends";
 
 type PropsAppType = {
     state: RootStateType
+    addPost: (postMessage: string) => void
 }
 
 const App = (props: PropsAppType) => {
@@ -23,7 +24,7 @@ const App = (props: PropsAppType) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} addPost={props.state.addPost} />}/>
-                <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage} addPost={props.state.addPost}/>}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>

@@ -5,6 +5,7 @@ export type PostPropsType={
     id: number
     message: string
     likesCount: number
+    addPost:(postMessage: string)=>void
 }
 
 const Post = (props:PostPropsType) => {

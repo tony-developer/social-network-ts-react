@@ -48,7 +48,7 @@ export let state: RootStateType = {
     },
     dialogsPage: {
         dialogs : [
-            {id: 1, name: 'Dimych'},
+            {id: 1, name:'Dimych'},
             {id: 2, name:'Andrey'},
             {id: 3, name:'Sveta'},
             {id: 4, name:'Sasha'},
