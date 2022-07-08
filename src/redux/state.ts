@@ -1,36 +1,45 @@
-import {PostPropsType} from "../components/Profile/MyPosts/Post/Post";
-import {MessagePropsType} from "../components/Dialogs/Message/Message";
-import {DialogItemPropsType} from "../components/Dialogs/DialogItem/DialogItem";
+export type PostType = {
+    id:  number
+    message: string
+    likesCount: number
+}
 
-// export type PostPropsType={
-//     id: number
-//     message: string
-//     likesCount: number
-// }
-// export type PostsType ={
-//     id: number,
-//     message: string,
-//     likesCount: number
-// }
-// export type MessagePropsType = {
-//     id: number
-//     message: string
-// }
-type ProfilePageType = {
-    posts: Array<PostPropsType>
+export type ProfilePageType = {
+    posts: Array<PostType>
 }
-type DialogsPropsType ={
-    dialogs: DialogItemPropsType[]
-    messages: MessagePropsType[]
+
+export type MessageType = {
+    id: number
+    message: string
 }
-type SidebarType = {}
+
+export type DialogType = {
+    id: number
+    name: string
+}
+
+export type DialogsPageType ={
+    dialogs: DialogType[]
+    messages: MessageType[]
+}
+
+export type FriendType = {
+    id: number
+    name: string
+}
+
+export type SidebarType = {
+    friends: FriendType[]
+}
+
 export type RootStateType = {
     profilePage: ProfilePageType
-    dialogsPage: DialogsPropsType
-    sidebar:SidebarType
+    dialogsPage: DialogsPageType
+    sidebar: SidebarType
+    addPost:(postMessage: string)=>void
 }
 
-export let state:RootStateType = {
+export let state: RootStateType = {
     profilePage: {
         posts : [
             {id: 1, message: 'Hi! How are you?', likesCount: 12},
@@ -54,6 +63,23 @@ export let state:RootStateType = {
             {id: 5, message:"Yo"}
         ]
     },
-    sidebar:{}
+    sidebar:{
+        friends : [
+            {id: 1, name: "Ann"},
+            {id: 2, name: "Jack"},
+            {id: 3, name: "Bob"},
+        ]
+    },
+    addPost(postMessage: string) {
+
+    }
 }
 
+export let addPost = (postMessage: string) =>{
+    const newPost: PostType = {
+        id: new Date().getTime() ,
+        message: postMessage,
+        likesCount: 0
+    };
+    state.profilePage.posts.push(newPost)
+}

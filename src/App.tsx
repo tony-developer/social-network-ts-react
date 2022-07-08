@@ -4,38 +4,32 @@ import Header from "./components/Header/Header";
 import Navbar from "./components/Navbar/Navbar";
 import Profile from "./components/Profile/Profile";
 import Dialogs from "./components/Dialogs/Dialogs";
-import {BrowserRouter, Route} from "react-router-dom";
+import {Route} from "react-router-dom";
 import News from "./components/News/News";
 import Music from "./components/Music/Music";
 import Settings from "./components/Settings/Settings";
-import {PostPropsType} from "./components/Profile/MyPosts/Post/Post";
-import {DialogItemPropsType} from "./components/Dialogs/DialogItem/DialogItem";
-import {MessagePropsType} from "./components/Dialogs/Message/Message";
 import {RootStateType} from "./redux/state";
+import Friends from "./components/Friends/Friends";
 
-type PropsAppType ={
-    posts: Array<PostPropsType>
-    dialogs: Array<DialogItemPropsType>
-    messages:Array<MessagePropsType>
+
+type PropsAppType = {
+    state: RootStateType
 }
 
-const App = (props:RootStateType) => {
+const App = (props: PropsAppType) => {
     return (
-        <BrowserRouter>
-            <div className='app-wrapper'>
-                <Header/>
-                <Navbar/>
-                {/*<Profile/>*/}
-                <div className='app-wrapper-content'>
-                    {/*<Route path='/dialogs' component={Dialogs}/>*/}
-                    <Route path='/dialogs' render={()=><Dialogs dialogs={props.dialogsPage.dialogs} messages={props.dialogsPage.messages}/>}/>
-                    <Route path='/profile' render={()=><Profile posts={props.profilePage.posts}/>}/>
-                    <Route path='/news' render={()=><News/>}/>
-                        <Route path='/music' render={()=><Music/>}/>
-                    <Route path='/settings' render={()=><Settings/>}/>
-                </div>
+        <div className='app-wrapper'>
+            <Header/>
+            <Navbar/>
+            <div className='app-wrapper-content'>
+                <Route path='/dialogs' render={() => <Dialogs dialogsPage={props.state.dialogsPage} addPost={props.state.addPost} />}/>
+                <Route path='/profile' render={() => <Profile profilePage={props.state.profilePage}/>}/>
+                <Route path='/news' render={() => <News/>}/>
+                <Route path='/music' render={() => <Music/>}/>
+                <Route path='/settings' render={() => <Settings/>}/>
+                <Route path='/friends' render={() => <Friends sidebar={props.state.sidebar}/>}/>
             </div>
-        </BrowserRouter>
+        </div>
     );
 }
 
