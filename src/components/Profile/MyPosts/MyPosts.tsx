@@ -15,14 +15,15 @@ const MyPosts = (props: MyPostsPropsType) => {
 
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     let addPost = () => {
-        let text = newPostElement.current?.value
-        text && props.addPost(text)
+        // let text = newPostElement.current?.value
+        props.dispatch({type:'ADD-POST'})
         // props.updateNewPostText('')
     }
     let postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount} addPost={addPost}/>)
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        text && props.updateNewPostText(text)
+        let action = {type: 'UPDATE-NEW_POST-TEXT', newText: text };
+        text && props.dispatch(action)
     }
 
     return (
