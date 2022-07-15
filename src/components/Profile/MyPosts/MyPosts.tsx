@@ -7,9 +7,9 @@ import {ActionsTypes, PostType} from "../../../redux/state";
 type MyPostsPropsType = {
     posts: Array<PostType>
     // addPost:(text: string)=>void
-    newPostText:string
-     updateNewPostText?: (newText:string)=> void
-    dispatch:(action:ActionsTypes)=>void
+    newPostText: string
+    updateNewPostText?: (newText: string) => void
+    dispatch: (action: ActionsTypes) => void
 }
 
 const MyPosts = (props: MyPostsPropsType) => {
@@ -17,13 +17,14 @@ const MyPosts = (props: MyPostsPropsType) => {
     let newPostElement = React.createRef<HTMLTextAreaElement>()
     let addPost = () => {
         // let text = newPostElement.current?.value
-        props.dispatch({type:'ADD-POST', postText: props.newPostText})
+        props.dispatch({type: 'ADD-POST', postText: props.newPostText})
         // props.updateNewPostText('')
     }
-    let postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount} addPost={addPost}/>)
+    let postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}
+                                                   addPost={addPost}/>)
     let onPostChange = () => {
         let text = newPostElement.current?.value
-        let action: ActionsTypes = { type: 'UPDATE-NEW-POST-TEXT', newText: props.newPostText  };
+        let action: ActionsTypes = {type: 'UPDATE-NEW-POST-TEXT', newText: props.newPostText};
         text && props.dispatch(action)
     }
 
