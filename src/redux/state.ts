@@ -37,16 +37,30 @@ export type RootStateType = {
     profilePage: ProfilePageType
     dialogsPage: DialogsPageType
     sidebar: SidebarType
-    // addPost: (postMessage: string) => void
+    addPost?: (postMessage: string) => void
 }
+
 export type StoreType = {
     _state: RootStateType
-    updateNewPostText: (newText: string) => void
-    addPost: (postText: string) => void
+    // updateNewPostText: (newText: string) => void
+    // addPost: (postText: string) => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
     _callSubscriber: () => void
+    dispatch:(action: AddPostActionType | UpdateNewPostType)=>void
 }
+
+export type AddPostActionType ={
+     type:"ADD-POST"
+    postText:string
+}
+export type UpdateNewPostType ={
+    type:'UPDATE-NEW-POST-TEXT'
+    newText: string
+}
+
+export type ActionsTypes = AddPostActionType | UpdateNewPostType
+
 export let store: StoreType = {
     _state: {
         profilePage: {
@@ -104,7 +118,7 @@ export let store: StoreType = {
     subscribe(observer) {
         this._callSubscriber = observer;
     },
-    dispatch(action) {//type:'ADD-POST'
+    dispatch(action) {
         if (action.type === 'ADD-POST') {
             const newPost: PostType = {
                 id: new Date().getTime(),
@@ -114,11 +128,10 @@ export let store: StoreType = {
             this._state.profilePage.posts.push(newPost)
             this._state.profilePage.newPostText = ''
             this._callSubscriber()
-        } else if(action.type === 'UPDATE-NEW_POST-TEXT'){
+        } else if(action.type === 'UPDATE-NEW-POST-TEXT'){
             this._state.profilePage.newPostText = action.newText
             this._callSubscriber()
         }
-
     }
 }
 

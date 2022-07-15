@@ -2,11 +2,12 @@ import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
 import React from "react";
-import {DialogsPageType} from "../../redux/state";
+import {ActionsTypes, DialogsPageType} from "../../redux/state";
 
 export type PropsType = {
     dialogsPage: DialogsPageType
-    addPost: (postMessage: string) => void
+    addPost?: (postMessage: string) => void
+    dispatch:(action:ActionsTypes)=>void
 }
 
 const Dialogs = (props: PropsType) => {
@@ -23,7 +24,7 @@ const Dialogs = (props: PropsType) => {
         // }
         // alert(newMessageElement.current && newMessageElement.current.value)
         if(newMessageElement.current) {
-            props.addPost(newMessageElement.current.value)
+            // props.addPost(newMessageElement.current.value)
         }
     }
 
