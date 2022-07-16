@@ -1,31 +1,35 @@
 import s from './Dialogs.module.css'
 import DialogItem from "./DialogItem/DialogItem";
 import Message from "./Message/Message";
-import React from "react";
-import {ActionsTypes, DialogsPageType} from "../../redux/state";
+import React, {ChangeEvent, FormEvent, FormEventHandler} from "react";
+import {
+    ActionsTypes,
+    DialogsPageType,
+    sendMessageCreator,
+    StoreType,
+    updateNewMessageBodyCreator
+} from "../../redux/state";
 
 export type PropsType = {
-    dialogsPage: DialogsPageType
+    // dialogsPage: DialogsPageType
     addPost?: (postMessage: string) => void
-    dispatch:(action:ActionsTypes)=>void
+    // dispatch:(action:ActionsTypes)=>void
+    store:StoreType
 }
 
 const Dialogs = (props: PropsType) => {
-    let messageElements = props.dialogsPage.messages.map(mes => <Message id={mes.id} message={mes.message}/>)
-    let dialogsElements =  props.dialogsPage.dialogs.map(d =>
-        <DialogItem name={d.name}  id={d.id}/>
-    )
+    let state = props.store.getState().dialogsPage
+    let dialogsElements =  state.dialogs.map(d => <DialogItem name={d.name}  id={d.id}/>)
+    let messageElements = state.messages.map(mes => <Message  message={mes.message} id={mes.id}/>)
+    let newMessageBody = state.newMessageBody
+    let onSendMessageClick = ()=> {
+    // props.store.dispatch(sendMessageCreator(newPostText))
+    props.store.dispatch(sendMessageCreator('newPostText'))
+    }
 
-    let newMessageElement = React.createRef<HTMLTextAreaElement>()
-    let addNewMessage =()=> {
-        // if (newMessageElement.current ){
-        //     let newMessage = newMessageElement.current.value
-        //     alert(newMessage)
-        // }
-        // alert(newMessageElement.current && newMessageElement.current.value)
-        if(newMessageElement.current) {
-            // props.addPost(newMessageElement.current.value)
-        }
+    let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>)=> {
+        let body = e.currentTarget.value
+        props.store.dispatch(updateNewMessageBodyCreator(body))
     }
 
     return (
@@ -34,11 +38,15 @@ const Dialogs = (props: PropsType) => {
                 {dialogsElements}
             </div>
             <div className={s.messages}>
-                {messageElements}
-                <textarea ref={newMessageElement}></textarea>
+                <div>{messageElements}</div>
                 <div>
-                    <button onClick={addNewMessage}>add message</button>
+                    <div><textarea placeholder="Enter your message" value={newMessageBody} onChange={(event) => onNewMessageChange(event)}></textarea></div>
+                    <div><button  onClick={onSendMessageClick}>Send</button></div>
                 </div>
+                {/*<textarea ref={newMessageElement}></textarea>*/}
+                {/*<div>*/}
+                {/*    <button onClick={addNewMessage}>add message</button>*/}
+                {/*</div>*/}
             </div>
         </div>
     )

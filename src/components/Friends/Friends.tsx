@@ -2,8 +2,6 @@ import React from 'react';
 import Friend, {FriendPropsType} from "./Friend/Friend";
 import {SidebarType} from "../../redux/state";
 
-
-
 export type PropsType = {
     sidebar: SidebarType
 }

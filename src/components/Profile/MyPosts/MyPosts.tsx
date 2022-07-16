@@ -1,4 +1,4 @@
-import React from 'react';
+import React, {ChangeEvent} from 'react';
 import s from './MyPosts.module.css'
 import Post, {PostPropsType} from "./Post/Post";
 import postsElements from "../Profile";
@@ -22,10 +22,11 @@ const MyPosts = (props: MyPostsPropsType) => {
     }
     let postsElements = props.posts.map(p => <Post key={p.id} id={p.id} message={p.message} likesCount={p.likesCount}
                                                    addPost={addPost}/>)
-    let onPostChange = () => {
-        let text = newPostElement.current?.value
+    let onPostChange = (event: ChangeEvent<HTMLTextAreaElement>) => {
+        // let text = newPostElement.current?.value
+        const text = event.currentTarget.value
         // let action: ActionsTypes = {type: 'UPDATE-NEW-POST-TEXT', newText: props.newPostText};
-        let action: ActionsTypes = updateNewPostTextActionCreator(props.updateNewPostText);
+        let action: ActionsTypes = updateNewPostTextActionCreator(text);
         text && props.dispatch(action)
     }
 
@@ -34,7 +35,7 @@ const MyPosts = (props: MyPostsPropsType) => {
             <h3>My posts</h3>
             <div>
                 <div>
-                    <textarea onChange={onPostChange} ref={newPostElement} value={props.newPostText}/>
+                    <textarea onChange={(event) => onPostChange(event)} ref={newPostElement} value={props.newPostText}/>
                 </div>
                 <div>
                     <button onClick={addPost}>Add post</button>
