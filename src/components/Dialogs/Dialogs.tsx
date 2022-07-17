@@ -5,10 +5,9 @@ import React, {ChangeEvent, FormEvent, FormEventHandler} from "react";
 import {
     ActionsTypes,
     DialogsPageType,
-    sendMessageCreator,
     StoreType,
-    updateNewMessageBodyCreator
 } from "../../redux/state";
+import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 
 export type PropsType = {
     // dialogsPage: DialogsPageType
