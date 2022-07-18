@@ -11,6 +11,7 @@ import Settings from "./components/Settings/Settings";
 import {RootStateType, StoreType} from "./redux/store";
 import Friends from "./components/Friends/Friends";
 import {ActionTypes} from "redux-form";
+import DialogsContainer from "./components/Dialogs/DialogsContainer";
 
 
 
@@ -28,8 +29,9 @@ const App: React.FC<PropsAppType>=(props) => {
             <Navbar/>
             <div className='app-wrapper-content'>
                 {/*<Route path='/dialogs' render={() => <Dialogs dialogsPage={state.dialogsPage} dispatch={props.store.dispatch.bind(props.store)} />}/>*/}
-                <Route path='/dialogs' render={() => <Dialogs store={props.store} />}/>
-                <Route path='/profile' render={() => <Profile profilePage={state.profilePage} dispatch={props.store.dispatch.bind(props.store)} />}/>
+                <Route path='/dialogs' render={() => <DialogsContainer store={props.store} />}/>
+                {/*<Route path='/profile' render={() => <Profile profilePage={state.profilePage} dispatch={props.store.dispatch.bind(props.store)} />}/>*/}
+                <Route path='/profile' render={() => <Profile store={props.store} />}/>
                 <Route path='/news' render={() => <News/>}/>
                 <Route path='/music' render={() => <Music/>}/>
                 <Route path='/settings' render={() => <Settings/>}/>

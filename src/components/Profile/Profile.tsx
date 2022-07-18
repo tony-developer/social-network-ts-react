@@ -3,6 +3,7 @@ import ProfileInfo from './ProfileInfo/ProfileInfo';
 import Post, {PostPropsType} from "./MyPosts/Post/Post";
 import {ActionsTypes, ProfilePageType} from "../../redux/store";
 import MyPosts from "./MyPosts/MyPosts";
+import MyPostsContainer from "./MyPosts/MyPostsContainer";
 
 type PropsType = {
     profilePage: ProfilePageType
@@ -16,9 +17,7 @@ const Profile = (props: PropsType) => {
     return (
         <div>
             <ProfileInfo/>
-            <MyPosts posts={props.profilePage.posts}
-                     newPostText={props.profilePage.newPostText}
-                     dispatch={props.dispatch}/>
+            <MyPostsContainer store={props.store}/>
         </div>
     );
 };

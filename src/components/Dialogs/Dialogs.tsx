@@ -17,18 +17,18 @@ export type PropsType = {
 }
 
 const Dialogs = (props: PropsType) => {
-    let state = props.store.getState().dialogsPage
+
+    let state = props.dialogsPage
     let dialogsElements =  state.dialogs.map(d => <DialogItem name={d.name}  id={d.id}/>)
     let messageElements = state.messages.map(mes => <Message  message={mes.message} id={mes.id}/>)
     let newMessageBody = state.newMessageBody
     let onSendMessageClick = ()=> {
-    // props.store.dispatch(sendMessageCreator(newPostText))
-    props.store.dispatch(sendMessageCreator('newPostText'))
+    props.sendMessage()
     }
 
     let onNewMessageChange = (e: ChangeEvent<HTMLTextAreaElement>)=> {
         let body = e.currentTarget.value
-        props.store.dispatch(updateNewMessageBodyCreator(body))
+        props.updateNewMessageBody(body)
     }
 
     return (
