@@ -1,5 +1,5 @@
-import profileReducer from "./profile-reducer";
-import dialogsReducer from "./dialogs-reducer";
+import profileReducer, {addPostActionCreator, updateNewPostTextActionCreator} from "./profile-reducer";
+import dialogsReducer, {sendMessageCreator, updateNewMessageBodyCreator} from "./dialogs-reducer";
 import sidebarReducer from "./sidebar-reducer";
 
 export type PostType = {
@@ -47,11 +47,9 @@ export type RootStateType = {
 
 export type StoreType = {
     _state: RootStateType
-    // updateNewPostText: (newText: string) => void
-    // addPost: (postText: string) => void
     subscribe: (callback: () => void) => void
     getState: () => RootStateType
-    _callSubscriber: () => void
+    _callSubscriber: (state: RootStateType) => void
     dispatch: (action: ActionsTypes) => void
 }
 
