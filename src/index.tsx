@@ -8,8 +8,9 @@ import App, {PropsAppType} from './App';
 import {RootStateType} from "./redux/store";
 import {BrowserRouter} from "react-router-dom";
 import StoreContext from "./StoreContext";
+import {Provider} from "react-redux";
 // import {Provider} from "react-redux";
-import {Provider} from "./StoreContext";
+
 
 let rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
