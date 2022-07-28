@@ -12,22 +12,20 @@ import {Provider} from "react-redux";
 // import {Provider} from "react-redux";
 
 
-let rerenderEntireTree = (store: StoreType) => {
+// let rerenderEntireTree = (store: StoreType) => {
     ReactDOM.render(
         <BrowserRouter>
-            {/*<App state={state} addPost={store.addPost.bind(store)} updateNewPostText={store.updateNewPostText.bind(store)}/>*/}
-            {/*<App state={state} dispatch={store.dispatch.bind(store)}/>*/}
             <Provider store= {store}>
                 <App />
             </Provider>
         </BrowserRouter>, document.getElementById('root')
     );
-}
+// }
 
 
 // store.subscribe(() => rerenderEntireTree(store))
-store.subscribe(() => {
-    let state = store.getState()
-    rerenderEntireTree(state)
-})
-rerenderEntireTree(store.getState());
+// store.subscribe(() => {
+//     let state = store.getState()
+//     rerenderEntireTree(state)
+// })
+// rerenderEntireTree(store.getState());

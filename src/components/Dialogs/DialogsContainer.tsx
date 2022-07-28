@@ -9,7 +9,6 @@ import {
 } from "../../redux/store";
 import {sendMessageCreator, updateNewMessageBodyCreator} from "../../redux/dialogs-reducer";
 import Dialogs from "./Dialogs";
-import StoreContext from "../../StoreContext";
 import {connect} from "react-redux";
 
 export type PropsType = {

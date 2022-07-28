@@ -4,6 +4,16 @@ import exp from "constants";
 const UPDATE_NEW_MESSAGE_BODY = 'UPDATE-NEW-MESSAGE-BODY';
 const SEND_MESSAGE = 'SEND_MESSAGE'
 
+export type MessageType = {
+    id: number
+    message: string
+}
+
+export type DialogType = {
+    id: number
+    name: string
+}
+
 let initialState = {
     dialogs: [
         {id: 1, name: 'Dimych'},
@@ -12,18 +22,20 @@ let initialState = {
         {id: 4, name: 'Sasha'},
         {id: 5, name: 'Viktor'},
         {id: 6, name: 'Valera'}
-    ],
+    ] as Array<DialogType>,
     messages: [
         {id: 1, message: "Hi!"},
         {id: 2, message: "How are you?"},
         {id: 3, message: "Yo"},
         {id: 4, message: "Yo"},
         {id: 5, message: "Yo"}
-    ],
+    ] as Array<MessageType>,
     newMessageBody: " "
 }
 
-const dialogsReducer = (state:DialogsPageType = initialState, action:ActionsTypes) => {
+// export type InitialStateType = typeof initialState
+
+const dialogsReducer = (state:DialogsPageType = initialState, action:ActionsTypes):DialogsPageType => {
     switch (action.type) {
         case UPDATE_NEW_MESSAGE_BODY:
             state.newMessageBody = action.body
